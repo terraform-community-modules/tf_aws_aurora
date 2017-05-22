@@ -1,11 +1,9 @@
-terraform-aurora
+tf_aws_aurora
 ===========
 
 Terraform module for deploying and managing AWS Aurora
 
 This module
-
-- Stuff this module does
 
 - we encrypt everything and make a kms id for you
 - future enhancement to make kms_key_id optional, so if you do pass it it'll use it, and if you don't it'll create the kms key id for you
@@ -42,7 +40,7 @@ Usage
 ```hcl
 
 module "aurora" {
-  source = "github.com/FitnessKeeper/terraform-aurora?ref=1.0.0"
+  source = "github.com/terraform-community-modules/tf_aws_aurora?ref=1.0.0"
   azs                     = "${var.azs}"
   env                     = "${var.env}"
   name                    = "thtest"
