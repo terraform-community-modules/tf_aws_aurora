@@ -4,7 +4,7 @@ data "aws_vpc" "vpc" {
 
 resource "aws_rds_cluster" "aurora" {
   cluster_identifier              = "tf-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  availability_zones              = "${var.azs}"
+  availability_zones              = ["${var.azs}"]
   database_name                   = "${var.database_name}"
   master_username                 = "${var.master_username}"
   master_password                 = "${var.master_password}"
