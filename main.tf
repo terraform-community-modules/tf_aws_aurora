@@ -28,7 +28,7 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
   identifier              = "tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"
   cluster_identifier      = "${aws_rds_cluster.aurora.id}"
   instance_class          = "${var.instance_class}"
-  publicly_accessible     = "false"
+  publicly_accessible     = "${var.publicly_accessible}"
   db_subnet_group_name    = "${aws_db_subnet_group.aurora_subnet_group.id}"
   db_parameter_group_name = "${aws_db_parameter_group.aurora_parameter_group.id}"
   apply_immediately       = "${var.apply_immediately}"

@@ -30,6 +30,11 @@ variable "instance_class" {
   default = "db.t2.medium"
 }
 
+variable "publicly_accessible" {
+  description = "Should the instance get a public IP address?"
+  default = "false"
+}
+
 variable "name" {
   description = "Name for the Redis replication group i.e. cmsCommon"
 }
