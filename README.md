@@ -57,22 +57,23 @@ module "aurora" {
   
   cluster_parameters = [
     {
-      name = "binlog_checksum"
+      name  = "binlog_checksum"
       value = "NONE"
     },
     {
-      name = "binlog_format"
-      value = "statement"
+      name         = "binlog_format"
+      value        = "statement"
+      apply_method = "pending-reboot"
     }
   ]
   
   db_parameters = [
     {
-      name = "long_query_time"
+      name  = "long_query_time"
       value = "2"
     },
     {
-      name = "slow_query_log"
+      name  = "slow_query_log"
       value = "1"
     }
   ]
