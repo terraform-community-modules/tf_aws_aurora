@@ -54,6 +54,8 @@ resource "aws_db_parameter_group" "aurora_parameter_group" {
   family      = "aurora5.6"
   description = "Terraform-managed parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
 
+  parameter   = ["${var.db_parameters}"]
+  
   tags {
     Name = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
   }
@@ -63,6 +65,8 @@ resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
   name        = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
   family      = "aurora5.6" # does this need a var?
   description = "Terraform-managed cluster parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
+  
+  parameter   = ["${var.cluster_parameters}"]
 
   tags {
     Name = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"

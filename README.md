@@ -54,6 +54,30 @@ module "aurora" {
   master_password         = "test1234"
   backup_retention_period = "1"
   #preferred_backup_window = ""
+  
+  cluster_parameters = [
+    {
+      name  = "binlog_checksum"
+      value = "NONE"
+    },
+    {
+      name         = "binlog_format"
+      value        = "statement"
+      apply_method = "pending-reboot"
+    }
+  ]
+  
+  db_parameters = [
+    {
+      name  = "long_query_time"
+      value = "2"
+    },
+    {
+      name  = "slow_query_log"
+      value = "1"
+    }
+  ]
+
 }
 
 ```

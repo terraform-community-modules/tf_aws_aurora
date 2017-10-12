@@ -44,6 +44,17 @@ variable "subnets" {
   type        = "list"
 }
 
+variable "cluster_parameters" {
+  description = "A list of cluster parameter maps to apply"
+  type        = "list"
+  default     = []
+}
+
+variable "db_parameters" {
+  description = "A list of db parameter maps to apply"
+  type        = "list"
+  default     = []
+}
 
 # see aws_rds_cluster documentation for these variables
 variable "database_name" { }
