@@ -33,6 +33,7 @@ This module
 - `instance_class` - "Instance class to use when creating RDS cluster. Defaults to db.t2.medium"
 - `storage_encrypted` - "Defaults to true"
 - `apply_immediately` - "Defaults to false"
+- `iam_database_authentication_enabled` - "Whether to enable IAM database authentication. Detaults to false"
 
 Usage
 -----
