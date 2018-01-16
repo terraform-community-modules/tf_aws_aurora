@@ -3,23 +3,24 @@ data "aws_vpc" "vpc" {
 }
 
 resource "aws_rds_cluster" "aurora" {
-  cluster_identifier              = "tf-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  availability_zones              = ["${var.azs}"]
-  database_name                   = "${var.database_name}"
-  master_username                 = "${var.master_username}"
-  master_password                 = "${var.master_password}"
-  backup_retention_period         = "${var.backup_retention_period}"
-  preferred_backup_window         = "${var.preferred_backup_window}"
-  vpc_security_group_ids          = ["${aws_security_group.aurora_security_group.id}"]
-  storage_encrypted               = "${var.storage_encrypted}"
-  kms_key_id                      = "${aws_kms_key.aurora.arn}"
-  apply_immediately               = "${var.apply_immediately}"
-  db_subnet_group_name            = "${aws_db_subnet_group.aurora_subnet_group.id}"
-  db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.aurora_cluster_parameter_group.id}"
-  final_snapshot_identifier       = "final-snapshot-${var.name}-${data.aws_vpc.vpc.tags["Name"]}" # Useful in dev
-  #skip_final_snapshot             = true # Useful in dev - defaults to false
+  cluster_identifier                  = "tf-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
+  availability_zones                  = ["${var.azs}"]
+  database_name                       = "${var.database_name}"
+  master_username                     = "${var.master_username}"
+  master_password                     = "${var.master_password}"
+  backup_retention_period             = "${var.backup_retention_period}"
+  preferred_backup_window             = "${var.preferred_backup_window}"
+  vpc_security_group_ids              = ["${aws_security_group.aurora_security_group.id}"]
+  storage_encrypted                   = "${var.storage_encrypted}"
+  kms_key_id                          = "${aws_kms_key.aurora.arn}"
+  apply_immediately                   = "${var.apply_immediately}"
+  db_subnet_group_name                = "${aws_db_subnet_group.aurora_subnet_group.id}"
+  db_cluster_parameter_group_name     = "${aws_rds_cluster_parameter_group.aurora_cluster_parameter_group.id}"
+  final_snapshot_identifier           = "final-snapshot-${var.name}-${data.aws_vpc.vpc.tags["Name"]}" # Useful in dev
+  #skip_final_snapshot                 = true # Useful in dev - defaults to false
+  iam_database_authentication_enabled = "${var.iam_database_authentication_enabled}"
   lifecycle {
-    prevent_destroy               = "true" # https://www.terraform.io/docs/configuration/resources.html#prevent_destroy
+    prevent_destroy                   = "true" # https://www.terraform.io/docs/configuration/resources.html#prevent_destroy
   }
 }
 
