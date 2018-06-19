@@ -9,7 +9,6 @@ resource "aws_rds_cluster" "aurora" {
   master_username                 = "${var.master_username}"
   master_password                 = "${var.master_password}"
   engine                          = "${var.engine}"
-  engine-version                  = "${var.engine_version}"
   backup_retention_period         = "${var.backup_retention_period}"
   preferred_backup_window         = "${var.preferred_backup_window}"
   vpc_security_group_ids          = ["${aws_security_group.aurora_security_group.id}"]
