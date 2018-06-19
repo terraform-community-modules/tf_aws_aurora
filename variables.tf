@@ -73,6 +73,9 @@ variable "preferred_backup_window" {
 variable "storage_encrypted" { default = true }
 variable "apply_immediately" { default = false }
 variable "iam_database_authentication_enabled" { default = false }
+variable "major_engine_version" { default = "5.6" }
+variable "engine" { default = "aurora" }
+variable "family" { default = "aurora5.6"}
 
 
 variable "vpc_id" {
