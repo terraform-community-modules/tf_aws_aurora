@@ -31,7 +31,6 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
   count                   = "${var.cluster_size}"
   identifier              = "tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"
   engine                  = "${var.engine}"
-  engine-version          = "${var.engine_version}"
   cluster_identifier      = "${aws_rds_cluster.aurora.id}"
   instance_class          = "${var.instance_class}"
   publicly_accessible     = "${var.publicly_accessible}"
