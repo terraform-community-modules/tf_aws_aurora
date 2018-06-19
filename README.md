@@ -35,8 +35,8 @@ This module
 - `apply_immediately` - "Defaults to false"
 - `iam_database_authentication_enabled` - "Whether to enable IAM database authentication. Detaults to false"
 - `engine` - "Name of the db Engine for Aurora mysql 5.7 use aurora-mysql. Defaults to Aurora mysql 5.6"
-- `major_engine_version` - "Name of the major engine eg 5.7. Defaults to 5.6"
-- `family` - "Name of the family db parameter group eg aurora-mysql5.7. Defaults to Aurora Aurora5.6"
+- `major_engine_version` - "Name of the major engine. Defaults to 5.6"
+- `family` - "Name of the family db parameter group for 5.7 use aurora-mysql5.7. Defaults to Aurora aurora5.6"
 
 Usage
 -----
