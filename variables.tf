@@ -74,6 +74,7 @@ variable "storage_encrypted" { default = true }
 variable "apply_immediately" { default = false }
 variable "iam_database_authentication_enabled" { default = false }
 variable "major_engine_version" { default = "5.7" }
+variable "engine" { default = "aurora-mysql" }
 variable "engine_version" { default = "5.7.12"}
 variable "family" { default = "aurora5.7"}
 
