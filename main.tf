@@ -81,7 +81,7 @@ resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
 resource "aws_db_option_group" "aurora_option_group" {
   name                     = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
   option_group_description = "Terraform-managed option group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  engine_name              = "${var.engine_name}"
+  engine_name              = "${var.engine}"
   major_engine_version     = "${var.major_engine_version}"
 }
 
