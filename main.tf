@@ -18,6 +18,7 @@ resource "aws_rds_cluster" "aurora" {
   db_subnet_group_name            = "${aws_db_subnet_group.aurora_subnet_group.id}"
   db_cluster_parameter_group_name = "${aws_rds_cluster_parameter_group.aurora_cluster_parameter_group.id}"
   final_snapshot_identifier       = "final-snapshot-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"          # Useful in dev
+  tags                            = "${merge(map("Name","tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
 
   #skip_final_snapshot                 = true # Useful in dev - defaults to false
   iam_database_authentication_enabled = "${var.iam_database_authentication_enabled}"
@@ -39,19 +40,15 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
   apply_immediately       = "${var.apply_immediately}"
   monitoring_role_arn     = "${aws_iam_role.aurora_instance_role.arn}"
   monitoring_interval     = "5"
+  tags                  = "${merge(map("Name","tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"), var.tags)}"
 
-  tags {
-    Name = "tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"
-  }
 }
 
 resource "aws_db_subnet_group" "aurora_subnet_group" {
   name       = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
   subnet_ids = ["${var.subnets}"]
+  tags       = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
 
-  tags {
-    Name = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  }
 }
 
 resource "aws_db_parameter_group" "aurora_parameter_group" {
@@ -60,10 +57,7 @@ resource "aws_db_parameter_group" "aurora_parameter_group" {
   description = "Terraform-managed parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
 
   parameter = ["${var.db_parameters}"]
-
-  tags {
-    Name = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  }
+  tags      = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
 }
 
 resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
@@ -72,10 +66,7 @@ resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
   description = "Terraform-managed cluster parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
 
   parameter = ["${var.cluster_parameters}"]
-
-  tags {
-    Name = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
-  }
+  tags      = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
 }
 
 resource "aws_db_option_group" "aurora_option_group" {
