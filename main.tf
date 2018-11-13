@@ -9,6 +9,7 @@ resource "aws_rds_cluster" "aurora" {
   master_username                 = "${var.master_username}"
   master_password                 = "${var.master_password}"
   engine                          = "${var.engine}"
+  engine_version                  = "${var.engine_version}"
   backup_retention_period         = "${var.backup_retention_period}"
   preferred_backup_window         = "${var.preferred_backup_window}"
   vpc_security_group_ids          = ["${aws_security_group.aurora_security_group.id}"]
@@ -32,6 +33,7 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
   count                   = "${var.cluster_size}"
   identifier              = "tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"
   engine                  = "${var.engine}"
+  engine_version          = "${var.engine_version}"
   cluster_identifier      = "${aws_rds_cluster.aurora.id}"
   instance_class          = "${var.instance_class}"
   publicly_accessible     = "${var.publicly_accessible}"
