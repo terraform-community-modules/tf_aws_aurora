@@ -27,7 +27,7 @@ This module
 #### Optional
 - `backup_retention_period` - "The days to retain backups for defaults to 30"
 - `db_port` - "defaults to 3306"
-- `allowed_cidr` - "A list of Security Group ID's to allow access to. Defaults to ["127.0.0.1/32"]"
+- `allowed_cidr` - "A list of CIDR addresses that can access the cluster. Defaults to ["127.0.0.1/32"]"
 - `allowed_security_groups` - "A list of Security Group ID's to allow access to. Defaults to empty list"
 - `preferred_backup_window` - "The daily time range in UTC during which automated backups are created. Default to 01:00-03:00"
 - `instance_class` - "Instance class to use when creating RDS cluster. Defaults to db.t2.medium"
