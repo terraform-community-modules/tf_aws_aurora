@@ -75,9 +75,15 @@ variable "apply_immediately" { default = false }
 variable "iam_database_authentication_enabled" { default = false }
 variable "major_engine_version" { default = "5.6" }
 variable "engine" { default = "aurora" }
+variable "engine_version" { default = "5.6.10a" }
 variable "family" { default = "aurora5.6"}
 
 
 variable "vpc_id" {
   description = "VPC ID"
+}
+
+variable "tags" {
+  description = "tags"
+  default = {}
 }
