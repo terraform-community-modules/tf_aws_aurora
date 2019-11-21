@@ -42,14 +42,14 @@ resource "aws_rds_cluster_instance" "aurora_instance" {
   apply_immediately       = "${var.apply_immediately}"
   monitoring_role_arn     = "${aws_iam_role.aurora_instance_role.arn}"
   monitoring_interval     = "5"
-  tags                  = "${merge(map("Name","tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"), var.tags)}"
+  tags                  = "${merge(map("Name","tf-rds-aurora-${var.name}-${data.aws_vpc.vpc.tags["Name"]}-${count.index}"),"application","automation","project","na","team","java","environment","dev","country","na","business-unit,"na","media-owner","na","data-category","na","created-by","terraform" , var.tags)}"
 
 }
 
 resource "aws_db_subnet_group" "aurora_subnet_group" {
   name       = "tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
   subnet_ids = ["${var.subnets}"]
-  tags       = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
+  tags       = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"),"application","automation","project","na","team","java","environment","dev","country","na","business-unit,"na","media-owner","na","data-category","na","created-by","terraform", var.tags)}"
 
 }
 
@@ -59,7 +59,7 @@ resource "aws_db_parameter_group" "aurora_parameter_group" {
   description = "Terraform-managed parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
 
   parameter = ["${var.db_parameters}"]
-  tags      = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
+  tags      = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), "application","automation","project","na","team","java","environment","dev","country","na","business-unit,"na","media-owner","na","data-category","na","created-by","terraform" , var.tags)}"
 }
 
 resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
@@ -68,7 +68,7 @@ resource "aws_rds_cluster_parameter_group" "aurora_cluster_parameter_group" {
   description = "Terraform-managed cluster parameter group for ${var.name}-${data.aws_vpc.vpc.tags["Name"]}"
 
   parameter = ["${var.cluster_parameters}"]
-  tags      = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"), var.tags)}"
+  tags      = "${merge(map("Name","tf-rds-${var.name}-${data.aws_vpc.vpc.tags["Name"]}"),"application","automation","project","na","team","java","environment","dev","country","na","business-unit,"na","media-owner","na","data-category","na","created-by","terraform" , var.tags)}"
 }
 
 resource "aws_db_option_group" "aurora_option_group" {
